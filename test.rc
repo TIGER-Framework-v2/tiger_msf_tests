@@ -1,0 +1,4 @@
+use scanner/portscan/tcp
+set RHOST 8.8.8.8 
+set THREADS 8
+run
