@@ -1,4 +1,12 @@
+spool /tmp/data/msfconsole-test.log
+set consolelogging true
+set loglevel 5
+set sessionlogging true
+set timestampoutput true
+set prompt %T S:%S J:%J
 use scanner/portscan/tcp
-set RHOST 8.8.8.8 
-set THREADS 8
+info
+set RHOSTS 208.69.33.154
+set PORTS 22-25,80,110-900,1024-2600
+set THREADS 1
 run
