@@ -1,0 +1,5 @@
+spool /tmp/data/msfconsole-test.log
+use auxiliary/scanner/discovery/udp_probe
+set RHOSTS 208.69.33.154
+set THREADS 256
+run
