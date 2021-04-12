@@ -1,0 +1,39 @@
+<ruby>
+
+
+if ENV['DATABASE_URL']
+  run_single("db_connect #{ENV['DATABASE_URL']}")
+else
+  run_single("db_connect -y /usr/src/metasploit-framework/config/database.yml")
+end
+
+run_single("workspace -a scanporttest")
+
+if ENV['RHOST']
+  rhost = ENV['RHOST']
+end
+if ENV['RHOSTS']
+  rhosts = ENV['RHOSTS']
+else
+  rhosts = '127.0.0.1'
+end
+
+if ENV['LHOST']
+  lhost = ENV['LHOST']
+else
+  lhost = %x(hostname -i)
+end
+
+run_single("setg RHOSTS #{rhosts}")
+run_single("setg RHOST #{rhost}")
+run_single("setg LHOST #{lhost}")
+
+run_single("show options")
+run_single("db_status")
+
+run_single("use auxiliary/scanner/portscan/tcp")
+run_single("set THREADS 10")
+run_single("set TIMEOUT 3")
+run_single("run")
+
+</ruby>
